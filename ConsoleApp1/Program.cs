@@ -13,7 +13,7 @@ namespace R20
     class Program
     {
         #region Method
-        public string Gurps_Throw(int skill_value, string statistic )
+        public string Gurps_Throw(int skill_value, string statistic)
         {
             int chek_result = new int();
             /* int[] sucsess_result = new int[throw_counter];
@@ -56,11 +56,11 @@ namespace R20
                 }
 
             }
-           
-            var output_result = string.Join("/",a,b,c,chek_result); ;
+
+            var output_result = string.Join("/", a, b, c, chek_result); ;
+            Console.WriteLine(output_result);
             return output_result;
 
-           
         }
         #endregion
         /*public string Output(string str)
@@ -70,10 +70,11 @@ namespace R20
         }*/
         public string processing(string statistic)
         {
-            return statistic ;
+            return statistic;
         }
         static void Main(string[] args)
         {
+            string result;
             Program test_throw = new Program();
             //int Skill_current_level = new int();
             Console.WriteLine("Введите количество бросков");
@@ -85,14 +86,32 @@ namespace R20
 
                 if (Int32.TryParse(Console.ReadLine(), out int input))
                 {
-                    string? str_method = Console.ReadLine(); 
+                    string str_method = Console.ReadLine();
                     while (i < counter)
                     {
-                        string result =(test_throw.Gurps_Throw(input, str_method));
+
+                        result = (test_throw.Gurps_Throw(input, str_method));
                         i++;
                         Console.WriteLine(result);
-                    }
+                        //int.TryParse(result, out int throw_data);
 
+                        char[] chars = result.ToCharArray();
+                        // Console.WriteLine(chars[2]);
+                        int[] int_array = new int[10];
+                        int_array[0] = Convert.ToInt32(chars[0]);
+                        Console.Write(Convert.ToInt32(chars[0]));
+                        int_array[1] = Convert.ToInt32(chars[2]);
+                        int_array[2] = Convert.ToInt32(chars[4]);
+                        int_array[3] = Convert.ToInt32(chars[6]);
+
+                        /* for (int n = 0; n < chars.Length; n += 2)
+                         {
+                             int_array[n/2] = Convert.ToInt32(chars[n]);
+                             Console.Write(chars[n]);
+                         }*/
+                        //Console.Write('/');
+                    }
+                    
                 }
                 else
                 {
@@ -106,7 +125,7 @@ namespace R20
                 Console.WriteLine("Введите целочисленное число");
             }
             Console.ReadKey();
-            
+
 
 
         }
@@ -114,5 +133,3 @@ namespace R20
     }
 
 }
-
-
