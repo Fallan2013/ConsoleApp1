@@ -58,7 +58,7 @@ namespace R20
             }
 
             var output_result = string.Join("/", a, b, c, chek_result); ;
-            Console.WriteLine(output_result);
+           // Console.WriteLine(output_result);
             return output_result;
 
         }
@@ -68,66 +68,64 @@ namespace R20
             Console.WriteLine();
             return "asdas";
         }*/
-        public string processing(string statistic)
-        {
-            return statistic;
-        }
+        //public int[] processing(int [] statistic)
+        //{   
+
+        //    return statistic;
+        //}
         static void Main(string[] args)
         {
+            int[] num_value = new int[4]; // [0] - количество крит провалов; [1] - количество провалов; [2] - количество успехов;[3] - количество крит успехов;
             string result;
             Program test_throw = new Program();
-            //int Skill_current_level = new int();
             Console.WriteLine("Введите количество бросков");
             if (Int32.TryParse(Console.ReadLine(), out int counter))
             {
+
                 Console.WriteLine("Значение эффективного навыка: ");
                 int i = 0;
-
-
                 if (Int32.TryParse(Console.ReadLine(), out int input))
                 {
                     string str_method = Console.ReadLine();
                     while (i < counter)
                     {
-
                         result = (test_throw.Gurps_Throw(input, str_method));
-                        i++;
-                        Console.WriteLine(result);
-                        //int.TryParse(result, out int throw_data);
-
                         char[] chars = result.ToCharArray();
-                        // Console.WriteLine(chars[2]);
                         int[] int_array = new int[10];
-                        int_array[0] = Convert.ToInt32(chars[0]);
-                        Console.Write(Convert.ToInt32(chars[0]));
-                        int_array[1] = Convert.ToInt32(chars[2]);
-                        int_array[2] = Convert.ToInt32(chars[4]);
-                        int_array[3] = Convert.ToInt32(chars[6]);
 
-                        /* for (int n = 0; n < chars.Length; n += 2)
-                         {
-                             int_array[n/2] = Convert.ToInt32(chars[n]);
-                             Console.Write(chars[n]);
-                         }*/
-                        //Console.Write('/');
+                        for (int n = 0; n < chars.Length; n += 2)
+                        {
+                            int_array[n / 2] = Convert.ToInt32(char.GetNumericValue(chars[n]));
+                            //Console.Write(int_array[n / 2]);
+                        }
+                        for (int k = -1; k <= 2; k++)
+                        {
+                            if (int_array[3] == k)
+                            {
+                                num_value[k + 1] += 1;
+                            }
+                        }
+                       
+                        i++;
                     }
-                    
+
                 }
                 else
                 {
                     Console.WriteLine("Введите целочисленное число.");
                 }
-
-
             }
             else
             {
                 Console.WriteLine("Введите целочисленное число");
             }
+            
+
+            Console.WriteLine($"Количество критических провалов: {num_value[0]}");
+            Console.WriteLine($"Количество провалов : {num_value[1]}");
+            Console.WriteLine($"Количество успехов : {num_value[2]}");
+            Console.WriteLine($"Количество критических успехов: {num_value[3]}");
             Console.ReadKey();
-
-
-
         }
 
     }
