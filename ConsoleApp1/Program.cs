@@ -8,6 +8,13 @@ using System.Threading.Tasks.Dataflow;
 using System.Xml;
 
 
+//Меню
+//переработать
+//подсчет уровня
+//частота выпадения цифр на кубиках
+//частота сумм бросков
+//самая частая цифра и сумма
+//  12; 15,16;14,11; 13; 12;
 namespace R20
 {
     class Program
@@ -16,10 +23,6 @@ namespace R20
         public string Gurps_Throw(int skill_value, string statistic)
         {
             int chek_result = new int();
-            /* int[] sucsess_result = new int[throw_counter];
-             int[] failure_result = new int[throw_counter];
-             int[] critsucsess_result = new int[throw_counter];
-             int[] critfalure_result = new int[throw_counter];*/
             var rand = new Random();
 
             int a = rand.Next(1, 7);
@@ -27,6 +30,7 @@ namespace R20
             int c = rand.Next(1, 7);
             int rand_sum = a + b + c;
             int result = skill_value - rand_sum;
+
 
 
             if ((result >= 0) && (rand_sum < 17))
@@ -58,7 +62,7 @@ namespace R20
             }
 
             var output_result = string.Join("/", a, b, c, chek_result); ;
-           // Console.WriteLine(output_result);
+            // Console.WriteLine(output_result);
             return output_result;
 
         }
@@ -105,7 +109,7 @@ namespace R20
                                 num_value[k + 1] += 1;
                             }
                         }
-                       
+
                         i++;
                     }
 
@@ -119,7 +123,7 @@ namespace R20
             {
                 Console.WriteLine("Введите целочисленное число");
             }
-            
+
 
             Console.WriteLine($"Количество критических провалов: {num_value[0]}");
             Console.WriteLine($"Количество провалов : {num_value[1]}");
